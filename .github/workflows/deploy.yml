@@ -23,7 +23,10 @@ jobs:
 
     - name: Push Docker image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/ci-cd-app:latest
-
+      
+    - name: Start Minikube
+      uses: medyagh/setup-minikube@master
+      
     - name: Deploy to Kubernetes (Minikube)
       run: |
         kubectl apply -f k8s/deployment.yaml
